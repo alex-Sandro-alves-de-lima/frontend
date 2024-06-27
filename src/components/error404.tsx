@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Result } from 'antd';
+import {  Result } from 'antd';
 const Error404 = () => {
     // https://ant.design/components/result
     return (
