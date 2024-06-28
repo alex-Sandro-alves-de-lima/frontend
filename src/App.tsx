@@ -75,7 +75,7 @@ const App: React.FC = () => {
                     onClick={(event) => {
                         navigate(event.key);
                     }}
-                  //  style={{ background: colorBgContainer }}
+                  ///  style={{ background: colorBgContainer }}
                     items={items}
                 />
             </Sider>

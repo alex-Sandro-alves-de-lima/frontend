@@ -16,7 +16,6 @@
     "gapi-script": "^1.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-google-login": "^5.2.2",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.24.0",
     "zustand": "^4.5.4"
