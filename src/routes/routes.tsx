@@ -11,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />, /// Rota publica
+    errorElement: <Error404 />,
     children: [
       {
         path: "product", /// Rota privada

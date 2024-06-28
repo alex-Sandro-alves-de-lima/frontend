@@ -2,20 +2,20 @@ import React from 'react';
 import { Button, Input, Form, Card } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import './login.css';
-import { useNavigate } from 'react-router-dom'; // Importe useNavigate para navegação
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
+import LoginGoogle from '../Login/loginGoogle';
 
 const Login: React.FC = () => {
-    const navigate = useNavigate(); // Use o hook useNavigate para navegação
+    const navigate = useNavigate();
     const { login } = useAuthStore();
 
     const onFinish = async (values: any) => {
         const { username, password } = values;
         try {
-            await login(username, password); // Chame a função de login do store ao submeter o formulário
+            await login(username, password);
             console.log('Login bem-sucedido!');
-            // Após o login bem-sucedido, você pode redirecionar o usuário para a página inicial ou outra rota desejada
-            navigate("/product"); // Redireciona para a rota inicial ('/')
+            navigate("/product");
         } catch (error) {
             console.error('Erro ao fazer login:', error);
             // Trate o erro de login aqui, como exibir uma mensagem de erro para o usuário
@@ -28,7 +28,7 @@ const Login: React.FC = () => {
             <div className="login-content">
                 <Card className="login-card">
                     <img
-                        src="https://w7.pngwing.com/pngs/829/736/png-transparent-gold-rim-illustration-leading-edge-academy-gilbert-elementary-frame-round-frame-deco-rectangle-poster-logo.png"
+                        src=""
                         alt="Logo"
                         className="login-logo"
                     />
@@ -43,6 +43,7 @@ const Login: React.FC = () => {
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 Log in
                             </Button>
+                            <LoginGoogle />
                         </Form.Item>
                     </Form>
                 </Card>
