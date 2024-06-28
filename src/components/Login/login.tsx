@@ -15,7 +15,7 @@ const Login: React.FC = () => {
             await login(username, password); // Chame a função de login do store ao submeter o formulário
             console.log('Login bem-sucedido!');
             // Após o login bem-sucedido, você pode redirecionar o usuário para a página inicial ou outra rota desejada
-            navigate('/product'); // Redireciona para a rota inicial ('/')
+            navigate("/product"); // Redireciona para a rota inicial ('/')
         } catch (error) {
             console.error('Erro ao fazer login:', error);
             // Trate o erro de login aqui, como exibir uma mensagem de erro para o usuário

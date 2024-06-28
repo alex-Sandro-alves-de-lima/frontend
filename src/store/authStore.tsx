@@ -15,7 +15,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
             await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulação de uma requisição assíncrona
 
             // Suponha que você obteve um token válido da sua API de autenticação
-            const token = `${password} ; ${username}`; // Substitua pelo token real obtido da API
+            const token = "true"; // Substitua pelo token real obtido da API
 
             // Salva o token no localStorage e atualiza o estado do store
             localStorage.setItem('token', token);
