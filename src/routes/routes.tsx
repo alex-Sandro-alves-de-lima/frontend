@@ -1,39 +1,61 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App.tsx';
-import Product from "../components/product";
 import Error404 from "../components/error404.tsx";
-import ProductDetails from "../components/productDetails.tsx";
-import Products from "../components/products.tsx";
 import Login from "../components/Login/login.tsx";
 import PrivateRoute from './privateRoutes.tsx';
+import AddItemForm from '../components/item/AddItemForm.tsx';
+import ListItemForm from '../components/item/ListItemForm.tsx';
+import ListItem from '../components/item/ListItem.tsx';
+import EditItem from '../components/item/editItem.tsx';
+import Item from '../components/item/item.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, /// Rota publica
-    errorElement: <Error404 />,
+      element: (
+          <PrivateRoute> 
+            <App />
+          </PrivateRoute>
+        ), 
+        errorElement: <Error404/>,
     children: [
       {
-        path: "product", /// Rota privada
+        path: "Item", /// Rota privada
         element: (
           <PrivateRoute> 
-            <Product />
+            <Item />
           </PrivateRoute>
         ),
       },
       {
-        path: "productDetails/:id",
+        path: "EditItem/:id",
         element: (
           <PrivateRoute>
-            <ProductDetails />
+            <EditItem />
           </PrivateRoute>
         ),
       },
       {
-        path: "products",
+        path: "ListItemForm",
         element: (
           <PrivateRoute>
-            <Products />
+            <ListItemForm />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "ListItem",
+        element: (
+          <PrivateRoute>
+            <ListItem />
+          </PrivateRoute>
+        ),
+      }
+     ,{
+        path: "AddItemForm",
+        element: (
+          <PrivateRoute>
+            <AddItemForm />
           </PrivateRoute>
         ),
       },
@@ -47,6 +69,10 @@ const router = createBrowserRouter([
     path: "login",
     element: <Login />, /// Rota publica
   },
+  {
+    path: "*",
+    element: <Error404 />,
+  }
 ]);
 
 export default router;
