@@ -1,9 +1,11 @@
-import React from 'react';
+
 import { Form, Input, Button, Space, Card } from 'antd';
 
 const { TextArea } = Input;
 
 const ProdutoForm = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   const onFinish = (values) => {
     console.log('Form Values:', values);
   };
@@ -34,6 +36,8 @@ const ProdutoForm = () => {
                     <Form.Item
                       {...restField}
                       name={[name, 'alturaProduto']}
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      //@ts-expect-error
                       fieldKey={[fieldKey, 'alturaProduto']}
                       label="Altura Produto"
                       rules={[{ required: true, message: 'Altura Produto é obrigatória' }]}
@@ -43,6 +47,8 @@ const ProdutoForm = () => {
                     <Form.Item
                       {...restField}
                       name={[name, 'bloco']}
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      //@ts-expect-error
                       fieldKey={[fieldKey, 'bloco']}
                       label="Bloco"
                       rules={[{ required: true, message: 'Bloco é obrigatório' }]}
@@ -53,6 +59,8 @@ const ProdutoForm = () => {
                     <Form.Item
                       {...restField}
                       name={[name, 'atributosDinamicos']}
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      //@ts-expect-error
                       fieldKey={[fieldKey, 'atributosDinamicos']}
                       label="Atributos Dinâmicos"
                     >

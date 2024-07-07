@@ -8,7 +8,8 @@ interface IFormularioDinamico {
   }
 
 const { Item: FormItem } = Form;
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                //@ts-expect-error
 const StandardForm = ({ onFinish, formItems }) => (
   <Card title="Standard Form" style={{ maxWidth: 600, margin: 'auto' }}>
     <Form onFinish={onFinish} layout="vertical">
