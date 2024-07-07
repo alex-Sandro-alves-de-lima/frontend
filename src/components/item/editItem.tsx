@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Input, Form, Checkbox, message, Layout } from 'antd';
+import { Button, Input, Form, Checkbox, message, Layout, Card,Image, Row, Col } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import itemStore from '../../store/store'; 
 import { IItem } from '../../types';
@@ -51,22 +51,32 @@ const EditItem: React.FC = () => {
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Layout.Header style={{ background: '#fff', padding: 0 }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px' }}>
-                    <div>
-                        <h1>Editar Item</h1>
-                        <h2>{item.description}</h2>
-                    </div>
-                    <div>
-                        <img src={item.urlImage} alt={item.description} style={{ maxHeight: 100, cursor: 'pointer' }}  />
-                    </div>
-                </div>
+                
             </Layout.Header>
             <Content style={{ padding: '24px' }}>
+                
+            <Card title="Form editar item" 
+            style={{  margin: 'auto' }}
+            >
+            <Row gutter={5} style={{border:"solid 1px"}}>
+                <Col  style={{border:"solid 1px"}} flex={2}>
+                <Image width={150} src={item.urlImage} alt={item.description}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px',border:"solid 1px" }}/>
+                </Col>
+                <Col  style={{border:"solid 1px"}} flex={2}>
+                <div style={{ display: 'flex', alignItems: 'center'}}>
+                    <h2>{item.description}</h2>
+                    </div>
                 <Form
+                 style={{border:"solid 1px", marginBottom: 10, marginInline : 15}}
                     initialValues={item}
+                    
                     onFinish={handleFinish}
+                    layout='horizontal'
                     labelCol={{ span: 6 }}
-                    wrapperCol={{ span: 12 }}
+                    
+                    wrapperCol={{ span: 10 }}
+                    labelAlign='right'
                 >
                     <Form.Item
                         label="ID"
@@ -77,6 +87,7 @@ const EditItem: React.FC = () => {
                     <Form.Item
                         label="Código"
                         name="code"
+                        style={{ marginBottom: 1 }} 
                         rules={[{ required: true, message: 'Por favor insira o código' }]}
                     >
                         <Input />
@@ -84,6 +95,7 @@ const EditItem: React.FC = () => {
                     <Form.Item
                         label="Descrição"
                         name="description"
+                        style={{ marginBottom: 1 }} 
                         rules={[{ required: true, message: 'Por favor insira a descrição' }]}
                     >
                         <Input />
@@ -91,6 +103,7 @@ const EditItem: React.FC = () => {
                     <Form.Item
                         label="EAN"
                         name="ean"
+                        style={{ marginBottom: 1 }} 
                         rules={[{ required: true, message: 'Por favor insira o EAN' }]}
                     >
                         <Input />
@@ -98,11 +111,13 @@ const EditItem: React.FC = () => {
                     <Form.Item
                         label="Preço"
                         name="price"
+                        style={{ marginBottom: 1 }} 
                         rules={[{ required: true, message: 'Por favor insira o preço' }]}
                     >
                         <Input />
                     </Form.Item>
                     <Form.Item
+                    
                         label="URL da Imagem"
                         name="urlImage"
                     >
@@ -119,6 +134,12 @@ const EditItem: React.FC = () => {
                         <Button type="primary" htmlType="submit">Salvar</Button>
                     </Form.Item>
                 </Form>
+                </Col>
+                
+              
+            </Row>
+                                 
+                </Card>
             </Content>
         </Layout>
     );

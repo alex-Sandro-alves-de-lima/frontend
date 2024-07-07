@@ -18,7 +18,7 @@ function LoginGoogle() {
       try {
         if (token) {
           await loginG(token);
-          navigate("/product");
+          navigate("/Dashboard");
         }
       } catch (error) {
         console.error('Erro ao fazer login:', error);

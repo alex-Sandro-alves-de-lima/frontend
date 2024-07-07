@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Divider, List, Skeleton, Button, Input } from 'antd';
+import { Avatar, Divider, List, Skeleton, Button, Input, Modal } from 'antd'; // Importa o Modal do Ant Design
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useNavigate } from 'react-router-dom';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -14,9 +14,10 @@ const ListItemForm: React.FC = () => {
   }));
 
   const [loading, setLoading] = useState(false);
-  const [displayedItems, setDisplayedItems] = useState<IItem[]>([]); // Definindo o tipo como IItem[]
-
+  const [displayedItems, setDisplayedItems] = useState<IItem[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [deleteItemId, setDeleteItemId] = useState<number | null>(null); // Estado para armazenar o ID do item a ser deletado
+  const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const ListItemForm: React.FC = () => {
   }, [fetchItems]);
 
   useEffect(() => {
-    setDisplayedItems(items.slice(0, 10)); // Corrigindo a inicialização do estado
+    setDisplayedItems(items.slice(0, 10));
   }, [items]);
 
   const loadMoreData = () => {
@@ -36,13 +37,27 @@ const ListItemForm: React.FC = () => {
       setDisplayedItems(prevItems => [
         ...prevItems,
         ...items.slice(prevItems.length, prevItems.length + 10)
-      ]); // Corrigindo a função de atualização do estado
+      ]);
       setLoading(false);
     }, 500);
   };
 
   const handleDelete = async (id: number) => {
-    await deleteItem(id);
+    setDeleteItemId(id); // Armazena o ID do item a ser deletado
+    setModalVisible(true); // Exibe o modal de confirmação
+  };
+
+  const confirmDelete = async () => {
+    if (deleteItemId) {
+      await deleteItem(deleteItemId);
+      setModalVisible(false); // Fecha o modal após a exclusão
+      setDeleteItemId(null); // Limpa o ID do item deletado
+    }
+  };
+
+  const cancelDelete = () => {
+    setModalVisible(false); // Fecha o modal sem deletar
+    setDeleteItemId(null); // Limpa o ID do item deletado
   };
 
   const handleEdit = (id: number) => {
@@ -93,7 +108,7 @@ const ListItemForm: React.FC = () => {
               ]}>
                 <List.Item.Meta
                   avatar={<Avatar src={item.urlImage} />}
-                  title={<a href={`/item/${item.id}`}>{item.description}</a>}
+                  title={item.description}//<a href={`/item/${item.id}`}>
                   description={`Code: ${item.code}, EAN: ${item.ean}, Price: ${item.price}, State: ${item.stateItem}`}
                 />
               </List.Item>
@@ -101,6 +116,18 @@ const ListItemForm: React.FC = () => {
           />
         </InfiniteScroll>
       </div>
+
+      {/* Modal de confirmação */}
+      <Modal
+        title="Confirmar Exclusão"
+        visible={modalVisible}
+        onOk={confirmDelete}
+        onCancel={cancelDelete}
+        okText="Confirmar"
+        cancelText="Cancelar"
+      >
+        <p>Tem certeza que deseja excluir este item?</p>
+      </Modal>
     </div>
   );
 };

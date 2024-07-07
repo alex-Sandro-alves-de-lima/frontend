@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import LoginGoogle from '../Login/loginGoogle';
 
+
 const Login: React.FC = () => {
     const navigate = useNavigate();
     const { login } = useAuthStore();
@@ -19,7 +20,7 @@ const Login: React.FC = () => {
         try {
             await login(username, password);
             console.log('Login bem-sucedido!');
-            navigate("/product");
+            navigate("/Dashboard");
         } catch (error) {
             console.error('Erro ao fazer login:', error);
             setError('Erro ao fazer login. Por favor, verifique suas credenciais.');

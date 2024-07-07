@@ -8,6 +8,8 @@ import ListItemForm from '../components/item/ListItemForm.tsx';
 import ListItem from '../components/item/ListItem.tsx';
 import EditItem from '../components/item/editItem.tsx';
 import Item from '../components/item/item.tsx';
+import Dashboard from '../components/Dashboard/index.tsx';
+import ProductPage from '../components/Product/ProductPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -20,10 +22,26 @@ const router = createBrowserRouter([
         errorElement: <Error404/>,
     children: [
       {
+        path: "product", /// Rota privada
+        element: (
+          <PrivateRoute> 
+            <ProductPage />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "Item", /// Rota privada
         element: (
           <PrivateRoute> 
             <Item />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "Dashboard", /// Rota privada
+        element: (
+          <PrivateRoute> 
+            <Dashboard />
           </PrivateRoute>
         ),
       },

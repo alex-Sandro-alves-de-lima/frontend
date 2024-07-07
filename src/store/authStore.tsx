@@ -1,6 +1,7 @@
 import create from 'zustand';
 import {jwtDecode} from 'jwt-decode';
 import { GooglePayloadLogin } from '../types/index';
+import autenticaStore from './autentica.store';
 
 type AuthStore = {
     token: string | null;
@@ -40,14 +41,15 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulação de uma requisição assíncrona
 
-            const token = `${idToken}`;
+            const token: string = `${idToken}`;
             if (!isValidToken(token)) {
                 throw new Error('Token inválido');
             }
 
-            localStorage.setItem('token', token);
+          //  localStorage.setItem('token', token);
             const decodedUser = jwtDecode<GooglePayloadLogin>(token); // Decodifica o token
             set({ token, user: decodedUser });
+            autenticaStore.logIn({email: decodedUser.email , token: token});
 
         } catch (error) {
             console.error('Erro ao fazer login:', error);
@@ -55,7 +57,8 @@ export const useAuthStore = create<AuthStore>((set) => ({
         }
     },
     logout: () => {
-        localStorage.removeItem('token');
-        set({ token: null, user: null });
+      //  localStorage.removeItem('token');
+        autenticaStore.logOut();
+       // set({ token: null, user: null });
     },
 }));

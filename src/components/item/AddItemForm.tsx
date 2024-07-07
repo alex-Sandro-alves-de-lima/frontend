@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Checkbox, Layout, message } from 'antd';
+import { Form, Input, Button, Checkbox, Layout, message, Card } from 'antd';
 import itemStore from '../../store/store'; // Importa a loja Zustand
 import { IItem } from '../../modules/item.entity';
 
@@ -15,7 +15,10 @@ const AddItemForm: React.FC = () => {
     const onFinish = async (values: IItem) => {
         await addItem(values);
         message.success('Item adicionado com sucesso!');
+        form.resetFields(); // Limpa os campos do formulário após submissão bem-sucedida
     };
+
+    const [form] = Form.useForm(); // Utiliza o hook Form para acessar o formulário
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -23,7 +26,9 @@ const AddItemForm: React.FC = () => {
                 <h1 style={{ textAlign: 'center' }}>Incluir Item</h1>
             </Header>
             <Content style={{ padding: '24px' }}>
+            <Card title="Form Item" style={{ maxWidth: 600, margin: 'auto' }}>
                 <Form
+                    form={form} // Associa o formulário ao hook Form
                     name="basic"
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
@@ -85,6 +90,7 @@ const AddItemForm: React.FC = () => {
                         </Button>
                     </Form.Item>
                 </Form>
+                </Card>
             </Content>
         </Layout>
     );

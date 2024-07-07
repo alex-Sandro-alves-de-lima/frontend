@@ -7,32 +7,27 @@ import router from './routes/routes';
 
 
 const clientId = "117403387590-p32jt9n5fuip6t9tvegk5f58jus9ck6d.apps.googleusercontent.com";
-
+//https://ant.design/theme-editor
 ReactDOM.render(
   <GoogleOAuthProvider clientId={clientId}>
     <React.StrictMode>
       <ConfigProvider
         theme={{
-          // token: {
-          //   colorPrimary: 'red', // Cor primária do tema
-          //   borderRadius: 7,
-          //   //colorBgContainer: "black", // Cor de fundo padrão
-          //   //colorText:"red"
-          // }
-          // ,
-          // components: {
-          //   Descriptions: {
-          //     colorSplit: "#C4D3E7",
-          //     colorFillAlter: '#C4D3E7',
-          //     colorText: '#040A13'
-          //   },
-          //   Card: {
-          //     colorFillAlter: "rgb(244, 244, 244)",
-          //     colorBgContainer: "#040A13"
-          //   }
-        
-            
-          // }
+            "token": {
+              "colorPrimary": "#323841",
+              "colorInfo": "#323841",
+              "colorLink": "#738299",
+              "colorTextBase": "#252323",
+              "colorLinkHover": "#619ee7",
+              "colorLinkActive": "#b5bac2",
+              "colorBgBase": "#ffffff",
+              "fontSize": 16,
+              "sizeStep": 4,
+              "borderRadius": 7,
+              "colorTextTertiary": "#74717173",
+              "colorTextSecondary": "#363333a6"
+          }
+          
         }}
       >
         <RouterProvider router={router} />

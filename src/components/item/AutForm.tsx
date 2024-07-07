@@ -1,13 +1,8 @@
 
+import StandardForm from './StandardForm';
 import { Input } from 'antd';
-import StandardForm from '../item/StandardForm';
-interface IFormularioDinamico {
-    name: string;
-    label: string;
-    rules: { required: boolean; message: string }[];
-    component: React.ReactNode;
-  }
-const formItems: IFormularioDinamico[] = [
+
+const formItems = [
   {
     name: 'name',
     label: 'Product Name',
@@ -29,8 +24,8 @@ const formItems: IFormularioDinamico[] = [
   // Adicione mais itens conforme necessário
 ];
 
-const handleFinish = () => {
- // console.log('Form values:', values);
+const handleFinish = (values) => {
+  console.log('Form values:', values);
   // Lógica para lidar com o envio do formulário
 };
 
